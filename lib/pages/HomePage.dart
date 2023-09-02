@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tutorial/controllers/index.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final Controller c = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
         leadingWidth: 50,
         leading: Container(
             margin: const EdgeInsets.only(left: 10),
@@ -20,7 +27,10 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey[700], fontWeight: FontWeight.w600)),
         actions: [
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.notifications_outlined))
+              onPressed: () {}, icon: const Icon(Icons.notifications_outlined)),
+          IconButton(
+              onPressed: () => c.changeThemeMode(),
+              icon: const Icon(Icons.dark_mode_outlined))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -80,7 +90,6 @@ class HomePage extends StatelessWidget {
                   10,
                   (index) => Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
                         padding: const EdgeInsets.all(18),
                         child: Column(
